@@ -2,6 +2,7 @@ package com.example.competences;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -19,4 +20,7 @@ public interface CompetenceDao {
 
     @Query("SELECT * FROM competence_table ORDER BY nomCompetence ASC")
     LiveData<List<Competence>> getToutesCompetences();
+
+    @Delete
+    void deleteCompetence (Competence competence);
 }

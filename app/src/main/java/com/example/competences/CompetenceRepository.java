@@ -27,6 +27,10 @@ public class CompetenceRepository {
         new insertAsyncTask(maCompetenceDao).execute(uneCompetence);
     }
 
+    public void delete(Competence uneComp) {
+        new supprimeTache(maCompetenceDao).execute(uneComp) ;
+    }
+
     private static class insertAsyncTask extends AsyncTask<Competence, Void, Void> {
         private CompetenceDao maTacheDao;
 

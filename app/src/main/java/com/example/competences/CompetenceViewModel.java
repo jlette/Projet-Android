@@ -21,5 +21,10 @@ public class CompetenceViewModel extends AndroidViewModel {
 
     LiveData<List<Competence>> getMesCompetences(){return mesCompetences;}
 
+
+    public void deleteCompetence(Competence uneCompetence) {
+        monRepository.delete(uneCompetence);
+    }
+
     public void insert(Competence uneCompetence) { monRepository.insert(uneCompetence);}
 }

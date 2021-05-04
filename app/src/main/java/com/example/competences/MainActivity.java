@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private CompetenceViewModel uneCompetenceViewModel;
+    public CompetenceListAdapter adapter;
+
     public static final int NEW_COMPETENCE_ACTIVITY_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, NEW_COMPETENCE_ACTIVITY_REQUEST_CODE);
             }
         });
+        adapter = new CompetenceListAdapter(this);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final CompetenceListAdapter adapter = new CompetenceListAdapter(this);
@@ -55,6 +59,27 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setMesCompetences(competences);
             }
         });
+
+        ItemTouchHelper monHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                int position = viewHolder.getAdapterPosition();
+                Competence maCompetence = adapter.getCompetenceAlaPosition(position);
+                Toast.makeText(MainActivity.this,"suppression de "+
+                        maCompetence.getNomCompetence(),Toast.LENGTH_LONG).show();
+
+                uneCompetenceViewModel.deleteCompetence(maCompetence);
+            }
+        });
+
+        monHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override

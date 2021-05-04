@@ -52,4 +52,8 @@ public class CompetenceListAdapter extends RecyclerView.Adapter<CompetenceListAd
             return mesCompetences.size();
         else return 0;
     }
+
+    public Competence getCompetenceAlaPosition(int position){
+        return mesCompetences.get(position);
+    }
 }

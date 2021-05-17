@@ -90,17 +90,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onOptionsItemSelected(MenuItem item){
+        //Handle action bar item clicks here.The action bar will
+        //automatically handle clicks on the Home/Up button,so long
+        //as you specify a parent activity in AndroidManifest.xml
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        //noinspection SimplefiableIfStatement
+        if (id == R.id.supprime_toutes_competences) {
+            Toast.makeText(this,"Attention on suprime tout nous ...",
+                    Toast.LENGTH_SHORT).show();
+            uneCompetenceViewModel.deleteAllCompetence();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 
 
 }

@@ -12,4 +12,5 @@
     <string name="hint_competence">Competence...</string>
     <string name="button_save">Sauvegarde</string>
     <string name="empty_not_saved">Competence vide:non sauvegardé</string>
+    <string name="supprime_tout"> Supprimez toutes les compétences</string>
 </resources>

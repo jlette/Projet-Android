@@ -31,6 +31,10 @@ public class CompetenceRepository {
         new supprimeTache(maCompetenceDao).execute(uneComp) ;
     }
 
+    public void deleteAllcompetence(){
+        new suprimeAllTache(maCompetenceDao).execute();
+    }
+
     private static class insertAsyncTask extends AsyncTask<Competence, Void, Void> {
         private CompetenceDao maTacheDao;
 
@@ -57,5 +61,19 @@ public class CompetenceRepository {
             maTacheDao.deleteCompetence(params[0]);
             return null;
         }
+    }
+
+    private static class suprimeAllTache extends AsyncTask<Competence, Void, Void> {
+
+        private CompetenceDao maTacheDao;
+
+        suprimeAllTache(CompetenceDao dao) {maTacheDao =dao;}
+
+        @Override
+        protected Void doInBackground(final Competence... params) {
+            maTacheDao.deleteAll();
+            return null;
+        }
+
     }
 }

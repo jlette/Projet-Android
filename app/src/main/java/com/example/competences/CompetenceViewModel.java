@@ -27,4 +27,8 @@ public class CompetenceViewModel extends AndroidViewModel {
     }
 
     public void insert(Competence uneCompetence) { monRepository.insert(uneCompetence);}
+
+    public void deleteAllCompetence(){
+        monRepository.deleteAllcompetence();
+    }
 }
